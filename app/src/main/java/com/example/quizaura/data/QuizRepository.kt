@@ -1,56 +1,36 @@
 package com.example.quizaura.data
 
-import android.content.Context
+import com.example.quizaura.data.local.toEntity
+import com.example.quizaura.data.local.toQuestion
 import com.example.quizaura.data.local.QuestionDao
-import com.example.quizaura.data.local.QuestionEntity
-import com.google.gson.Gson
-
-data class QuestionListDto(val questions: List<QuestionDto>)
-data class QuestionDto(
-    val id: Int,
-    val question: String,
-    val options: List<String>,
-    val correctIndex: Int,
-    val explanation: String
-)
 
 class QuizRepository(
-    private val context: Context,
-    private val dao: QuestionDao
+    private val dao: QuestionDao,
+    private val api: TriviaApi
 ) {
     suspend fun getQuestions(): Result<List<Question>> {
         return try {
             val cached = dao.getQuestions()
-
-            if (cached.isEmpty()) {
-                val json = context.assets.open("questions.json")
-                    .bufferedReader().use { it.readText() }
-
-                val parsed = Gson().fromJson(json, QuestionListDto::class.java)
-
-                val entities = parsed.questions.map { dto ->
-                    QuestionEntity(
-                        id = dto.id,
-                        options = Gson().toJson(dto.options),
-                        correctIndex = dto.correctIndex,
-                        explanation = dto.explanation,
-                        questions = dto.question
-                    )
-                }
-                dao.insertQuestions(entities)
+            if (cached.isNotEmpty()) {
+                return Result.success(cached.map { it.toQuestion() })
             }
 
-            val questions = dao.getQuestions().map { entity ->
+            val response = api.getQuestions()
+            val questions = response.results.mapIndexed { index, trivia ->
+                val allOptions = (trivia.incorrect_answers + trivia.correct_answer).shuffled()
+                val correctIndex = allOptions.indexOf(trivia.correct_answer)
                 Question(
-                    id = entity.id,
-                    options = Gson().fromJson(entity.options, Array<String>::class.java).toList(),
-                    correctIndex = entity.correctIndex,
-                    explanation = entity.explanation,
-                    question = entity.questions
+                    id = index,
+                    question = trivia.question,
+                    options = allOptions,
+                    correctIndex = correctIndex,
+                    explanation = "Correct answer: ${trivia.correct_answer}"
                 )
             }
 
+            dao.insertQuestions(questions.map { it.toEntity() })
             Result.success(questions)
+
         } catch (e: Exception) {
             Result.failure(e)
         }

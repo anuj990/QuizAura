@@ -82,4 +82,7 @@ dependencies {
 
 // Gson
     implementation(libs.gson)
+//retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
 }
