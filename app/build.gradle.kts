@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
 }
-
 android {
     namespace = "com.example.quizaura"
     compileSdk {
@@ -34,6 +35,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         compose = true
     }
@@ -55,4 +57,25 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
+// Room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+// Navigation
+    implementation(libs.navigation.compose)
+
+// Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+
+// ViewModel
+    implementation(libs.lifecycle.viewmodel.compose)
+
+// Gson
+    implementation(libs.gson)
 }
