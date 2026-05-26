@@ -1,4 +1,4 @@
-package com.example.quizaura.presentation
+package com.example.quizaura.presentation.auth
 
 sealed class AuthUiState {
     data object Idle : AuthUiState()
