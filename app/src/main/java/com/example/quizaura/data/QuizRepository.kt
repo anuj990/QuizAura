@@ -1,5 +1,6 @@
 package com.example.quizaura.data
 
+import android.text.Html
 import com.example.quizaura.data.local.toEntity
 import com.example.quizaura.data.local.toQuestion
 import com.example.quizaura.data.local.QuestionDao
@@ -22,10 +23,26 @@ class QuizRepository(
                 val correctIndex = allOptions.indexOf(trivia.correct_answer)
                 Question(
                     id = index,
-                    question = trivia.question,
-                    options = allOptions,
+
+                    question = Html.fromHtml(
+                        trivia.question,
+                        Html.FROM_HTML_MODE_LEGACY
+                    ).toString(),
+
+                    options = allOptions.map {
+
+                        Html.fromHtml(
+                            it,
+                            Html.FROM_HTML_MODE_LEGACY
+                        ).toString()
+                    },
+
                     correctIndex = correctIndex,
-                    explanation = "Correct answer: ${trivia.correct_answer}"
+
+                    explanation = Html.fromHtml(
+                        "Correct answer: ${trivia.correct_answer}",
+                        Html.FROM_HTML_MODE_LEGACY
+                    ).toString()
                 )
             }
 

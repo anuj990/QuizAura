@@ -137,7 +137,7 @@ fun SignupScreen(
 
                 singleLine = true,
 
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(16.dp)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
