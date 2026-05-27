@@ -10,6 +10,7 @@ class QuizRepository(
 ) {
     suspend fun getQuestions(): Result<List<Question>> {
         return try {
+            dao.clearQuestions()
             val cached = dao.getQuestions()
             if (cached.isNotEmpty()) {
                 return Result.success(cached.map { it.toQuestion() })

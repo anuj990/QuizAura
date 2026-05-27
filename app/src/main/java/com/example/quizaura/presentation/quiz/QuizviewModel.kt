@@ -1,8 +1,10 @@
 package com.example.quizaura.presentation.quiz
 
 
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quizaura.data.AuthService
 import com.example.quizaura.data.QuizRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -12,7 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class QuizViewModel(private val repository: QuizRepository) : ViewModel() {
+class QuizViewModel(private val repository: QuizRepository,private val authService: AuthService) : ViewModel() {
 
     private val _uiState = MutableStateFlow(QuizUiState())
     val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
@@ -109,5 +111,8 @@ class QuizViewModel(private val repository: QuizRepository) : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         timerJob?.cancel()
+    }
+    fun logout(){
+        authService.logout()
     }
 }

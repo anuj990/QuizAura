@@ -13,7 +13,7 @@ interface TriviaApi {
     @GET("api.php")
     suspend fun getQuestions(
         @Query("amount") amount: Int = 10,
-        @Query("category") category: Int = 18,
+        @Query("category") category: Int = 22,
         @Query("type") type: String = "multiple"
     ): TriviaResponse
 }

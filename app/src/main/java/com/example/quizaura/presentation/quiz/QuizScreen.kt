@@ -9,10 +9,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -29,7 +34,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun QuizScreen(
     modifier: Modifier = Modifier,
-    onQuizFinished: (score: Int, total: Int) -> Unit
+    onQuizFinished: (score: Int, total: Int) -> Unit,
+    onLogOut:() -> Unit
 ) {
     val viewModel: QuizViewModel = koinViewModel()
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -68,6 +74,12 @@ fun QuizScreen(
                         color = if (state.timeLeft <= 10) MaterialTheme.colorScheme.error else
                             MaterialTheme.colorScheme.onSurface
                     )
+                    IconButton(onClick = {
+                        viewModel.logout()
+                        onLogOut()
+                    }) {
+                        Icon(Icons.Default.ExitToApp, contentDescription = "Logout")
+                    }
                 }
                 Spacer(modifier.height(24.dp))
                 Text(text = questions.question, style = MaterialTheme.typography.titleMedium)

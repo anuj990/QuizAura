@@ -85,4 +85,6 @@ dependencies {
 //retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
+//icons
+    implementation(libs.androidx.compose.material.icons.extended)
 }

@@ -27,5 +27,5 @@ val appModule = module{
             .create(TriviaApi::class.java)
     }
     single { QuizRepository(get(), get()) }
-    viewModel { QuizViewModel(get()) }
+    viewModel { QuizViewModel(get(),get()) }
 }
