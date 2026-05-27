@@ -20,7 +20,6 @@ fun QuestionEntity.toQuestion() = Question(
     correctIndex = correctIndex,
     explanation = explanation
 )
-
 fun Question.toEntity() = QuestionEntity(
     id = id,
     question = question,
