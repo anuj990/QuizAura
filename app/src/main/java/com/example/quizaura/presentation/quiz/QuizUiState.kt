@@ -10,5 +10,6 @@ data class QuizUiState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val isFinished: Boolean = false,
-    val timeLeft: Int = 30
+    val timeLeft: Int = 30,
+    val score : Int = 0
 )

@@ -61,6 +61,10 @@ class QuizViewModel(private val repository: QuizRepository) : ViewModel() {
 
     fun nextQuestion() {
         val state = _uiState.value
+        val score = state.answers.mapIndexed { index, answer ->
+            if(answer ==state.questions[index].correctIndex) 1 else 0
+        }.sum()
+
         if (state.currentIndex < state.questions.size - 1) {
             _uiState.update {
                 it.copy(
@@ -72,7 +76,8 @@ class QuizViewModel(private val repository: QuizRepository) : ViewModel() {
             startTimer()
         } else {
             timerJob?.cancel()
-            _uiState.update { it.copy(isFinished = true) }
+            _uiState.update { it.copy(isFinished = true, score = score)
+             }
         }
     }
 
