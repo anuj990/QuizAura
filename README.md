@@ -224,39 +224,37 @@ GET /api.php?amount=10&category=18&type=multiple
 
 ## Login Screen
 
-Add screenshot here
+<img width="390" height="887" alt="image" src="https://github.com/user-attachments/assets/d90417f7-ffc2-486e-ba1d-714d8912ff8e" />
+
 
 ## Signup Screen
+<img width="403" height="887" alt="image" src="https://github.com/user-attachments/assets/f66e5f25-b753-4522-9325-39c2a02d709b" />
 
-Add screenshot here
 
 ## Quiz Screen
+<img width="395" height="888" alt="image" src="https://github.com/user-attachments/assets/cb4ea13f-3828-4915-b0a5-369a308183c6" />
 
-Add screenshot here
+
 
 ## Result Screen
 
-Add screenshot here
+<img width="398" height="892" alt="image" src="https://github.com/user-attachments/assets/2ae1c180-3f94-4243-a4a9-74b07f9a3ce7" />
 
-## Dark Mode
+<img width="395" height="882" alt="image" src="https://github.com/user-attachments/assets/eb422a9c-793f-43fe-9943-3c4f525ff7b7" />
 
-Add screenshot here
+
+
+
 
 ---
 
 # Demo Video
 
-App Walkthrough:
-Add video link here
+App Walkthrough:https://drive.google.com/file/d/1uVc0tLVGkY7BBnIBWDNJurx8TOwkuS7W/view?usp=sharing
+
 
 Architecture Explanation:
 Add architecture video link here
-
----
-
-# APK Download
-
-Add APK link here
 
 ---
 
@@ -265,7 +263,7 @@ Add APK link here
 ## Clone Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/anuj990/QuizAura.git
 ```
 
 ## Open in Android Studio
@@ -304,4 +302,4 @@ Or run directly using Android Studio.
 Anuj
 
 GitHub:
-https://github.com/YOUR_USERNAME
+https://github.com/anuj990
