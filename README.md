@@ -254,7 +254,7 @@ App Walkthrough:https://drive.google.com/file/d/1uVc0tLVGkY7BBnIBWDNJurx8TOwkuS7
 
 
 Architecture Explanation:
-Add architecture video link here
+[Add architecture video link here](https://drive.google.com/file/d/1t0qvCym4OntSFxRZZ1rTMbP7akmacQ3H/view?usp=drive_link)
 
 ---
 
