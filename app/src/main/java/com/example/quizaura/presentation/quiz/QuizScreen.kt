@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -113,19 +114,28 @@ fun QuizScreen(
                             )
                         }
 
-                        Surface(
-                            shape = RoundedCornerShape(50),
-                            color = if (state.timeLeft <= 10)
-                                MaterialTheme.colorScheme.errorContainer
-                            else
-                                MaterialTheme.colorScheme.primaryContainer
+                        Row(
+                            modifier = Modifier.padding(
+                                horizontal = 14.dp,
+                                vertical = 8.dp
+                            ),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
+
+                            Icon(
+                                imageVector = Icons.Default.Timer,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                                tint = if (state.timeLeft <= 10)
+                                    MaterialTheme.colorScheme.onErrorContainer
+                                else
+                                    MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+
+                            Spacer(modifier = Modifier.width(6.dp))
+
                             Text(
-                                text = "⏱ ${state.timeLeft}s",
-                                modifier = Modifier.padding(
-                                    horizontal = 16.dp,
-                                    vertical = 8.dp
-                                ),
+                                text = "${state.timeLeft}s",
                                 style = MaterialTheme.typography.labelLarge,
                                 color = if (state.timeLeft <= 10)
                                     MaterialTheme.colorScheme.onErrorContainer
@@ -260,7 +270,6 @@ fun QuizScreen(
                     }
                 }
 
-                // Buttons pinned to bottom
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
