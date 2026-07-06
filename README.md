@@ -44,7 +44,7 @@ QuizAura demonstrates modern Android development practices including Firebase Au
 ## Offline Support
 
 * Room Database Caching
-* Offline-first Question Handling
+* Offline first Question Handling
 * Local Persistence
 
 ---
